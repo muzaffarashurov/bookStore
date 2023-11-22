@@ -1,8 +1,5 @@
 package com.spaces.bookStore.bootstrap;
 
-import com.spaces.bookStore.entity.Author;
-import com.spaces.bookStore.entity.Book;
-import com.spaces.bookStore.entity.Publisher;
 import com.spaces.bookStore.repository.AuthorRepository;
 import com.spaces.bookStore.repository.BookRepository;
 import com.spaces.bookStore.repository.PublisherRepository;

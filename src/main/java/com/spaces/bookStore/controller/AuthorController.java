@@ -2,6 +2,7 @@ package com.spaces.bookStore.controller;
 
 import com.spaces.bookStore.entity.Author;
 import com.spaces.bookStore.service.AuthorService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(value = "/author")
 @Controller
+@RequiredArgsConstructor
 public class AuthorController {
-    @Autowired
-    private AuthorService authorService;
+
+    private final AuthorService authorService;
 
     @GetMapping({"", "/"})
     public String getAuthor(Model model) {

@@ -6,6 +6,7 @@ import com.spaces.bookStore.entity.Publisher;
 import com.spaces.bookStore.service.AuthorService;
 import com.spaces.bookStore.service.BookService;
 import com.spaces.bookStore.service.PublisherService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +18,11 @@ import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/book")
+@RequiredArgsConstructor
 public class BookController {
-    @Autowired
-    private BookService bookService;
-    @Autowired
-    private PublisherService publisherService;
-    @Autowired
-    private AuthorService authorService;
+    private final BookService bookService;
+    private final PublisherService publisherService;
+    private final AuthorService authorService;
 
     @GetMapping({"", "/"})
     public String getBook(Model model) {

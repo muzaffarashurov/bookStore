@@ -107,7 +107,8 @@
 
         </div>
         <br>
-        <br><input type="submit" value="Add / Update Book">
+        <br>
+        <input type="submit" th:value="${books.getId()} == null ? 'Add': 'Update'">
     </form>
 </div>
 

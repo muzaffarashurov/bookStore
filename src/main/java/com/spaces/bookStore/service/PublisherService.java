@@ -22,13 +22,7 @@ public class PublisherService {
     }
 
     public Publisher save(Publisher publisher) {
-        if(publisher.getId() != null){
-            bookRepository.findByPublisher(publisher).stream()
-                    .forEach(book -> {
-                        book.setPublisher(publisher);
-                        bookRepository.save(book);
-                    });
-        }
+
         return publisherRepository.save(publisher);
     }
 
