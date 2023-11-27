@@ -2,20 +2,24 @@ package com.spaces.bookStore.controller;
 
 import com.spaces.bookStore.entity.Author;
 import com.spaces.bookStore.service.AuthorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RequestMapping(value = "/author")
 @Controller
+@RequiredArgsConstructor
 public class AuthorController {
-    @Autowired
-    private AuthorService authorService;
+
+    private final AuthorService authorService;
 
     @GetMapping({"", "/"})
     public String getAuthor(Model model) {
         model.addAttribute("authors", authorService.getAll());
+//       log.debug(authorService.getAll().toString());
         return "author/author";
     }
 
@@ -41,6 +45,7 @@ public class AuthorController {
 
     @PutMapping("/update")
     public String updateAuthor(@ModelAttribute Author author) {
+        log.info(author.toString());
         authorService.save(author);
         return "redirect:/author";
     }

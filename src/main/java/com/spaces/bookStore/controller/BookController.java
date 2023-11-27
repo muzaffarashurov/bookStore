@@ -5,25 +5,30 @@ import com.spaces.bookStore.entity.Book;
 import com.spaces.bookStore.entity.Publisher;
 import com.spaces.bookStore.service.AuthorService;
 import com.spaces.bookStore.service.BookService;
+import com.spaces.bookStore.service.MyBookService;
 import com.spaces.bookStore.service.PublisherService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping(value = "/book")
 public class BookController {
-    @Autowired
-    private BookService bookService;
-    @Autowired
-    private PublisherService publisherService;
-    @Autowired
-    private AuthorService authorService;
+
+    private final BookService bookService;
+
+    private final PublisherService publisherService;
+
+    private final AuthorService authorService;
+
+    private final MyBookService myBookService;
+
 
     @GetMapping({"", "/"})
     public String getBook(Model model) {
@@ -79,5 +84,15 @@ public class BookController {
 
         return "redirect:/book";
     }
+
+    @GetMapping("/copy/{id}")
+    public String addBookToMyCart(@PathVariable("id") Long id) {
+        Optional<Book> mybook = bookService.findById(id);
+        if (mybook.isPresent()) {
+            myBookService.copyBookToMyCart(mybook.get());
+        }
+        return"redirect:/book";
+}
+
 
 }

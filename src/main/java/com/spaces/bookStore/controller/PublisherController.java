@@ -1,18 +1,18 @@
 package com.spaces.bookStore.controller;
 
 import com.spaces.bookStore.entity.Publisher;
-import com.spaces.bookStore.repository.PublisherRepository;
 import com.spaces.bookStore.service.PublisherService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping(value = "/publisher")
 public class PublisherController {
-    @Autowired
-    private PublisherService publisherService;
+
+    private final PublisherService publisherService;
 
     @GetMapping({"", "/"})
     public String getPublisher(Model model) {

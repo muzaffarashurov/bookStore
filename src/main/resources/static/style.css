@@ -1,0 +1,47 @@
+body {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+                              url(/background_image.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+}
+
+button.btn-primary:hover {
+        background-color: #0056b3;
+}
+        button.btn-primary {
+        margin-top: 5px;
+        margin-left: 5%;
+        background-color: #007bff;
+        color: rgb(15, 2, 2);
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
+icon {
+         width: 30px; /* задайте желаемую ширину */
+            height: 30px; /* задайте желаемую высоту */
+            margin-right: 5px; /* задайте отступ между изображениями и текстом, если нужно */
+}
+.registration-form {
+    font-family: 'Arial', sans-serif;
+    background-color: #08312d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.registration-form h2 {
+    font-size: 24px;
+    color: #d5ce01;
+    margin-bottom: 20px;
+}
+
+
+
