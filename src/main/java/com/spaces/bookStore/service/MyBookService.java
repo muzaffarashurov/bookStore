@@ -1,7 +1,7 @@
 package com.spaces.bookStore.service;
 
-import com.spaces.bookStore.entity.Book;
 import com.spaces.bookStore.entity.MyBook;
+import com.spaces.bookStore.model.BookModel;
 import com.spaces.bookStore.repository.MyBookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class MyBookService {
         myBookRepository.deleteById(id);
     }
 
-    public void copyBookToMyCart(Book book) {
+    public void copyBookToMyCart(BookModel book) {
         MyBook myBook = new MyBook();
         myBook.setTitle(book.getTitle());
         myBook.setIsbn(book.getIsbn());

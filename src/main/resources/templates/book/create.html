@@ -26,22 +26,22 @@
         <br><label for="isbn">ISBN:</label>
         <input type="text" th:field="*{isbn}" id="isbn" name="isbn"><br>
 
-
-        <br><label for="publisher">Publisher:</label>
-        <select id="publisher" name="publisher">
+        <br>
+        <label for="publisherId">Publisher:</label>
+        <select id="publisherId" name="publisherId">
             <option value="">Select Publisher</option>
             <option th:each="publisher : ${publishers}"
                     th:value="${publisher.id}"
                     th:text="${publisher.name}"
                     th:selected="${publisher.id ==selectedPublisherId}">
             </option>
-        </select><br>
-
+        </select>
+        <br>
 
         <br><label>Authors:</label>
         <div>
             <div th:each="author : ${authors}">
-                <input type="checkbox" th:id="'author' + ${author.id}" name="authors" th:value="${author.id}"
+                <input type="checkbox" th:id="'author' + ${author.id}" name="authorsIds" th:value="${author.id}"
                        th:checked="${authorsList != null && #lists.contains(authorsList, author.id)}">
                 <label th:for="'author' + ${author.id}" th:text="${author.firstName}"></label>
             </div>
