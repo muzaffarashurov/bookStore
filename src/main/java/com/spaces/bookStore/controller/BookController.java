@@ -1,5 +1,6 @@
 package com.spaces.bookStore.controller;
 
+import com.spaces.bookStore.dto.BookDto;
 import com.spaces.bookStore.entity.Author;
 import com.spaces.bookStore.entity.Book;
 import com.spaces.bookStore.entity.Publisher;
@@ -33,9 +34,11 @@ public class BookController {
 
     @GetMapping({"", "/"})
     public String getBook(Model model) {
+
         var list = bookService.getAll().stream()
                 .map(BookMapper::mapToDto)
                 .toList();
+
         model.addAttribute("books", list);
         return "book/book";
     }
@@ -46,13 +49,14 @@ public class BookController {
         List<Author> authors = authorService.getAll();
         model.addAttribute("publishers", publishers);
         model.addAttribute("authors", authors);
-        model.addAttribute("books", new Book());
+        model.addAttribute("books", new BookDto());
         return "book/create";
     }
 
     @PostMapping("/create")
-    public String createBook(@ModelAttribute Book book) {
-        bookService.save(book);
+    public String createBook(@ModelAttribute BookDto book) {
+        var mapped = BookMapper.mapToEntity(book);
+        bookService.save(mapped);
         return "redirect:/book";
     }
 
