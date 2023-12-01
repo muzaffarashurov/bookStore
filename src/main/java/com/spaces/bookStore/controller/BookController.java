@@ -3,6 +3,7 @@ package com.spaces.bookStore.controller;
 import com.spaces.bookStore.entity.Author;
 import com.spaces.bookStore.entity.Book;
 import com.spaces.bookStore.entity.Publisher;
+import com.spaces.bookStore.mapper.BookMapper;
 import com.spaces.bookStore.service.AuthorService;
 import com.spaces.bookStore.service.BookService;
 import com.spaces.bookStore.service.MyBookService;
@@ -32,7 +33,10 @@ public class BookController {
 
     @GetMapping({"", "/"})
     public String getBook(Model model) {
-        model.addAttribute("books", bookService.getAll());
+        var list = bookService.getAll().stream()
+                .map(BookMapper::mapToDto)
+                .toList();
+        model.addAttribute("books", list);
         return "book/book";
     }
 
@@ -91,8 +95,8 @@ public class BookController {
         if (mybook.isPresent()) {
             myBookService.copyBookToMyCart(mybook.get());
         }
-        return"redirect:/book";
-}
+        return "redirect:/book";
+    }
 
 
 }

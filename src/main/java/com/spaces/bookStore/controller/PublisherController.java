@@ -1,6 +1,7 @@
 package com.spaces.bookStore.controller;
 
 import com.spaces.bookStore.entity.Publisher;
+import com.spaces.bookStore.mapper.PublisherMapper;
 import com.spaces.bookStore.service.PublisherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,10 @@ public class PublisherController {
 
     @GetMapping({"", "/"})
     public String getPublisher(Model model) {
-        model.addAttribute("publishers", publisherService.getAll());
+        var list = publisherService.getAll().stream()
+                .map(PublisherMapper::mapToDto)
+                .toList();
+        model.addAttribute("publishers", list);
         return "publisher/publisher";
     }
 

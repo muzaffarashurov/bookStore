@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: classpath:/liquibase/changeset/init.sql
+  - include:
+      file: classpath:/liquibase/changeset/data.sql

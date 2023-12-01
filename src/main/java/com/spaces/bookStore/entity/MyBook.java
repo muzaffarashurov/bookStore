@@ -2,15 +2,14 @@ package com.spaces.bookStore.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
+@AllArgsConstructor
 @Table(name = "my_book")
 public class MyBook {
     @Id

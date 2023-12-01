@@ -1,5 +1,6 @@
 package com.spaces.bookStore.controller;
 
+import com.spaces.bookStore.mapper.MyBookMapper;
 import com.spaces.bookStore.service.MyBookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,10 @@ public class MyBookController {
 
     @GetMapping({"", "/"})
     public String getMyBookList(Model model) {
-        model.addAttribute("myBookList", myBookService.getAll());
+        var list = myBookService.getAll().stream()
+                .map(MyBookMapper::mapToDto)
+                .toList();
+        model.addAttribute("myBookList", list);
         return "mybook/mybook";
     }
 

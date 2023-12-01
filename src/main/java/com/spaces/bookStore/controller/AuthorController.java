@@ -1,6 +1,7 @@
 package com.spaces.bookStore.controller;
 
 import com.spaces.bookStore.entity.Author;
+import com.spaces.bookStore.mapper.AuthorMapper;
 import com.spaces.bookStore.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,10 @@ public class AuthorController {
 
     @GetMapping({"", "/"})
     public String getAuthor(Model model) {
-        model.addAttribute("authors", authorService.getAll());
+        var list = authorService.getAll().stream()
+                .map(AuthorMapper::mapToDto)
+                .toList();
+        model.addAttribute("authors", list);
 //       log.debug(authorService.getAll().toString());
         return "author/author";
     }
